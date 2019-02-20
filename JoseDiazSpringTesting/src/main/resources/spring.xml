@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean name="myCollection" class="com.josediaz.spring.bean.MyCollection" />
+
+<bean name="myCollection" class="com.josediaz.spring.service.MyCollectionService">
+	<property name="myCollection" ref="myCollection"></property>
+</bean>
+
+<bean name="myCollectionService" class="com.josediaz.spring.service.MyCollectionService"
+		init-method="init" destroy-method="destroy">
+	<property name="myCollectionService" ref="myCollectionService"></property>
+</bean>
+
+<!-- initializing CommonAnnotationBeanPostProcessor is same as context:annotation-config -->
+<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+<bean name="myService" class="com.josediaz.spring.service.MyService" />
+</beans>
